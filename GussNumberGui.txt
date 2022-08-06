@@ -1,0 +1,112 @@
+from tkinter import *
+from tkinter import ttk
+from tkinter.messagebox import askyesno
+import random
+import time
+
+l= 0
+lo= 0
+
+def exit():
+    ttk.Button(win, text='Ask Yes/No', command=confirm)
+    yes = askyesno(title='confirmation', message='You really Want to exit... ')
+    if yes:
+        win.destroy()
+
+
+
+def sub():
+    l = var.get()
+    lo = var2.get()
+
+def guss():
+    l   = var.get()
+    lo  = var2.get()
+    re  = var3.get()
+    ran = random.randint(l, lo)
+    print(ran)
+    if ran == re:
+            lbl3 = Label(win, width=20, text='You Win...', bg='#42EADD')
+            lbl3.pack()
+            lbl3.place(x=650, y=500)
+
+    else:
+            lbl4 = Label(win, width=20, text='Try next one...', bg='#8BD8BD')
+            lbl4.pack()
+            lbl4.place(x=650, y=500)
+
+
+win = Tk()
+win.title("Gussing Number Game...")
+win.iconbitmap('icon.ico')
+win.configure(bg='#243665')
+win.maxsize(width=1920, height=1080)
+win.minsize(width=1000, height=1000)
+
+# Lower number....
+
+lbl = Label(win, width=20, text='Enter Lower number...', bg='#8BD8BD')
+lbl.pack()
+lbl.place(x=2, y=12)
+var = IntVar()
+ent = Entry(win, bd=1.5, textvariable=var)
+ent.pack()
+ent.place(x=200, y=12)
+
+# Upper Number....
+
+lbl2 = Label(win, width=20, text='Enter Upper number...', bg='#8BD8BD')
+lbl2.pack()
+lbl2.place(x=2, y=50)
+var2 = IntVar()
+ent2 = Entry(win, bd=1.5, textvariable=var2)
+ent2.pack()
+ent2.place(x=200, y=50)
+
+# Submit Lower and Upper...
+btn = Button(win, text='Submit', command=sub, bg='#FF0000', fg='#FFFFFF', bd=5, activebackground='#00ff00')
+btn.pack()
+btn.place(x=155, y=90)
+
+# Lable for Enter value...
+
+lbl = Label(win, width=20, text='Enter Your Number...', bg='#8BD8BD')
+lbl.pack()
+lbl.place(x=650, y=300)
+# Enter User guss number....
+var3 = IntVar()
+ent3 = Entry(win, bd=1.5, textvariable=var3)
+ent3.place(x=650, y=385)
+
+# Button For Result....
+
+btn1 = Button(win, text='Guss..', command=guss, bg='#FF0000',fg='#FFFFFF',bd=5, activebackground='#00ff00')
+btn1.pack()
+btn1.place(x=850, y=379)
+
+# Partners...
+
+lbl3 = Label(win, width=20, text='Team members are :-->', bg='#8BD8BD')
+lbl3.pack()
+lbl3.place(x=1120, y=12)
+com = ttk.Combobox(win,width=20 )
+com['values']= ('Arpit')
+com['state']= 'readonly'
+com.current(0)
+com.place(x=1320, y=12)
+
+# Exit Button..
+
+def confirm():
+    answer = askyesno(title='confirmation', massage='Are you sure that you want to quit?')
+    if answer:
+        win.destroy()
+
+
+btn2 = Button(win, text='EXIT', command=exit, bg='#FF0000',fg='#FFFFFF',bd=5, activebackground='#00ff00',width=8)
+btn2.pack()
+btn2.place(x=1420, y=800)
+
+win.attributes('-fullscreen', True)
+
+win.mainloop()
